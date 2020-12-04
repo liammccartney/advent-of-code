@@ -9,8 +9,8 @@ def part_2(expenses):
     with open("input.txt", "r") as expenses:
         expenses = [int(exp) for exp in expenses.readlines()]
         for i in expenses:
-            for j in expenses:
-                for k in expenses:
+            for j in expenses[1:]:
+                for k in expenses[2:]:
                     if i + j + k == 2020:
                         return i * j * k
 
