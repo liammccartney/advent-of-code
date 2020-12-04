@@ -20,9 +20,9 @@ def main(field, slope):
             trees += 1
 
         x += slope.x
-        if x > width - 1:
-            x -= width
-
+        # Saw this in Paul's solution (after I completed mine of course)
+        # and I couldn't resist stealing it
+        x %= width
         y += slope.y
 
     return trees
