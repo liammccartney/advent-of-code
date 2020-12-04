@@ -6,13 +6,11 @@ def part_1(expenses):
 
 
 def part_2(expenses):
-    with open("input.txt", "r") as expenses:
-        expenses = [int(exp) for exp in expenses.readlines()]
-        for iidx, i in enumerate(expenses):
-            for jdx, j in enumerate(expenses[iidx:]):
-                for k in expenses[jdx:]:
-                    if i + j + k == 2020:
-                        return i * j * k
+    for iidx, i in enumerate(expenses):
+        for jdx, j in enumerate(expenses[iidx:]):
+            for k in expenses[jdx:]:
+                if i + j + k == 2020:
+                    return i * j * k
 
 
 if __name__ == "__main__":
