@@ -15,13 +15,13 @@ def main(data):
     i = 0
 
     while i < len(data):
+        instruction = data[i].strip()
+        op, arg = instruction.split(" ")
+
         if i in visited:
-            return accumulator
+            raise ValueError("Looped")
 
         visited.add(i)
-
-        instruction = data[i]
-        op, arg = instruction.split(" ")
 
         if op == "acc":
             accumulator += int(arg)
@@ -31,8 +31,29 @@ def main(data):
             continue
 
         i += 1
+    return accumulator
+
+
+def fix_program(data):
+    for i in range(0, len(data)):
+        head = data[0:i]
+        tail = data[(i + 1) :]
+        instruction = data[i]
+
+        if "jmp" in instruction:
+            new_instruction = instruction.replace("jmp", "nop")
+        elif "nop" in instruction:
+            new_instruction = instruction.replace("nop", "jmp")
+        else:
+            continue
+
+        try:
+            return main(head + [new_instruction] + tail)
+        except ValueError:
+            continue
 
 
 if __name__ == "__main__":
     with open("input.txt", "r") as data:
-        print(main(data.readlines()))
+        data = data.read().splitlines()
+        print(fix_program(data))
