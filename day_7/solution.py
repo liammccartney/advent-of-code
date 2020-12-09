@@ -42,15 +42,20 @@ def find_bags(bag_nesting, target, acc):
     return acc
 
 
-def count_bags(bag_nesting, target, acc):
+def count_bags(bag_nesting, target):
     """
     Count Bag Nesting
     """
-    return 126
+    return sum(
+        [
+            ib["count"] * (count_bags(bag_nesting, ib["color"]) + 1)
+            for ib in bag_nesting[target]
+        ]
+    )
 
 
 if __name__ == "__main__":
-    with open("example2.txt", "r") as data:
+    with open("input.txt", "r") as data:
         contains = parse(data)
         print("Part 1:", len(find_bags(contains, "shiny gold", set())))
-        print("Part 2:", count_bags(contains, "shiny gold", 0))
+        print("Part 2:", count_bags(contains, "shiny gold"))
