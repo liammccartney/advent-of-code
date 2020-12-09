@@ -4,41 +4,38 @@ Day 7
 Luggage
 """
 import re
-import pprint
-
-pp = pprint.PrettyPrinter(indent=4)
 
 
-def parse(luggage_spec):
+def parse_spec(luggage_spec):
     """
-    Does the thing
+    Parse the Luggage Spec into a more reasonable data structure
     """
-    contains = {}
+    nested_bags = {}
     for spec in luggage_spec:
-        lead_bag = re.match(r"^(?P<lead_bag>[a-z]+ [a-z]+) bags", spec).group(
-            "lead_bag"
-        )
-        contains[lead_bag] = []
-        inner_bags = [bag for bag in spec.split("contain")[1].split(", ")]
+        parent, children = spec.split("contain")
+        outer_bag = re.match(r"^(?P<lead_bag>\w+ \w+) bags", parent).group("lead_bag")
+        inner_bags = children.split(", ")
+
+        nested_bags[outer_bag] = []
         for bag in inner_bags:
-            match = re.search(r"((?P<count>\d+) (?P<color>[a-z]+ [a-z]+))", bag)
+            match = re.search(r"((?P<count>\d+) (?P<color>\w+ \w+))", bag)
             if match is None:
                 continue
-            contains[lead_bag].append(
+            nested_bags[outer_bag].append(
                 {"color": match.group("color"), "count": int(match.group("count"))}
             )
 
-    return contains
+    return nested_bags
 
 
-def find_bags(bag_nesting, target, acc):
+def find_bags(nested_bags, target, acc):
     """
-    find which bags contain shiny gold
+    find all bags eventually contain the target
     """
-    for bag, inner_bags in bag_nesting.items():
+    for bag, inner_bags in nested_bags.items():
         if target in [inner["color"] for inner in inner_bags]:
             acc.add(bag)
-            find_bags(bag_nesting, bag, acc)
+            find_bags(nested_bags, bag, acc)
     return acc
 
 
@@ -56,6 +53,6 @@ def count_bags(bag_nesting, target):
 
 if __name__ == "__main__":
     with open("input.txt", "r") as data:
-        contains = parse(data)
+        contains = parse_spec(data)
         print("Part 1:", len(find_bags(contains, "shiny gold", set())))
         print("Part 2:", count_bags(contains, "shiny gold"))
