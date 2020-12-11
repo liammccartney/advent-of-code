@@ -37,14 +37,22 @@ def change_seating(seat_chart):
             if seat == ".":
                 continue
 
-            adjacent = adjacent_coords(coord)
-            surrounding = [get_seat(seat_chart, coord) for coord in adjacent]
+            adjacent = adjacent_coords(coord, len(row), len(seat_chart))
 
-            if seat == "L" and all([s != "#" for s in surrounding if s is not None]):
+            surrounding = []
+
+            for d, line_of_sight in adjacent.items():
+                for point in line_of_sight:
+                    sseat = get_seat(seat_chart, point)
+                    if sseat in ("L", "#"):
+                        surrounding.append(sseat)
+                        break
+
+            if seat == "L" and all([z in ("L", ".") for z in surrounding]):
                 to_be_seated.append(coord)
                 continue
 
-            if seat == "#" and len([s for s in surrounding if s == "#"]) >= 4:
+            if seat == "#" and len([v for v in surrounding if v == "#"]) >= 5:
                 to_be_unseated.append(coord)
                 continue
 
@@ -69,28 +77,79 @@ def get_seat(seat_chart, coord):
     return None
 
 
-def adjacent_coords(coord):
+def adjacent_coords(coord, width, height):
     """
     A list of all points surrounding a given coordinate set
     """
-    return [
-        # South
-        Coord(coord.x, coord.y + 1),
-        # South East
-        Coord(coord.x + 1, coord.y + 1),
-        # East
-        Coord(coord.x + 1, coord.y),
-        # North East
-        Coord(coord.x + 1, coord.y - 1),
-        # North
-        Coord(coord.x, coord.y - 1),
-        # North West
-        Coord(coord.x - 1, coord.y - 1),
-        # West
-        Coord(coord.x - 1, coord.y),
-        # North West
-        Coord(coord.x - 1, coord.y + 1),
-    ]
+    adjacent = {
+        "S": [],
+        "SE": [],
+        "E": [],
+        "NE": [],
+        "N": [],
+        "NW": [],
+        "W": [],
+        "SW": [],
+    }
+    x = coord.x
+    y = coord.y
+
+    # S
+    delta_y = 1
+    while delta_y + y < height:
+        adjacent["S"].append(Coord(x, y + delta_y))
+        delta_y += 1
+
+    # SE?
+    delta_x = x + 1
+    delta_y = y + 1
+    while delta_x < width and delta_y < height:
+        adjacent["SE"].append(Coord(delta_x, delta_y))
+        delta_x += 1
+        delta_y += 1
+
+    # E
+    delta_x = 1
+    while x + delta_x < width:
+        adjacent["E"].append(Coord(x + delta_x, y))
+        delta_x += 1
+
+    # NE?
+    delta_x = 1
+    delta_y = y - 1
+    while delta_x < width - x and delta_y >= 0:
+        adjacent["NE"].append(Coord(x + delta_x, delta_y))
+        delta_x += 1
+        delta_y -= 1
+
+    # N
+    delta_y = y - 1
+    while delta_y >= 0:
+        adjacent["N"].append(Coord(x, delta_y))
+        delta_y -= 1
+
+    # NW?
+    delta_x = x - 1
+    delta_y = y - 1
+    while delta_x >= 0 and delta_y >= 0:
+        adjacent["NW"].append(Coord(delta_x, delta_y))
+        delta_x -= 1
+        delta_y -= 1
+    # W
+    delta_x = x - 1
+    while delta_x >= 0:
+        adjacent["W"].append(Coord(delta_x, y))
+        delta_x -= 1
+
+    # SW?
+    delta_x = x - 1
+    delta_y = 1
+    while delta_x >= 0 and y + delta_y < height:
+        adjacent["SW"].append(Coord(delta_x, y + delta_y))
+        delta_x -= 1
+        delta_y += 1
+
+    return adjacent
 
 
 if __name__ == "__main__":
