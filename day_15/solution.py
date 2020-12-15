@@ -6,7 +6,7 @@ Rambunctious Recitation
 from collections import defaultdict
 
 
-def part_1(numbers):
+def main(numbers, limit):
     """
     Does the thing
     """
@@ -19,7 +19,7 @@ def part_1(numbers):
         number = n
         turn += 1
 
-    for p in range(2020 - len(numbers)):
+    for p in range(limit - len(numbers)):
         number_count = len(number_ages[number])
 
         if number_count > 1:
@@ -29,6 +29,7 @@ def part_1(numbers):
             number = 0
 
         number_ages[number].append(turn)
+        number_ages[number] = number_ages[number][-2:]
 
         turn += 1
 
@@ -36,14 +37,7 @@ def part_1(numbers):
 
 
 if __name__ == "__main__":
-    assert (part_1([0, 3, 6])) == 436
-    assert (part_1([1, 3, 2])) == 1
-    assert (part_1([2, 1, 3])) == 10
-    assert (part_1([1, 2, 3])) == 27
-    assert (part_1([2, 3, 1])) == 78
-    assert (part_1([3, 2, 1])) == 438
-    assert (part_1([3, 1, 2])) == 1836
-
     with open("input.txt", "r") as dataset:
         dataset = [int(x) for x in dataset.read().split(",")]
-        print("Part 1:", part_1(dataset))
+        print("Part 1:", main(dataset, 2020))
+        print("Part 2:", main(dataset, 30000000))
