@@ -33,6 +33,7 @@ def part_2(program):
     """
     mask = None
     memory = {}
+    cache = {}
     for line in program:
         if line.startswith("mask = "):
             mask = parse_mask(line)
@@ -43,14 +44,28 @@ def part_2(program):
         value = int(value)
 
         masked_address = apply_mask_2(mask, address)
+        print("Masked Address", masked_address)
 
-        # print("Address  (DEC):", address)
-        # print("Address  (BIN):", left_pad(convert_to_bin(address), 36))
-        # print("        Mask  :", mask)
-        # print("Address Masked:")
-        # print(masked_address)
-        # print()
-        assign_masked_address([c for c in masked_address], value, memory, set())
+        min_address = convert_to_dec(masked_address.replace("X", "0"))
+        print("Min Address", min_address)
+        max_address = convert_to_dec(masked_address.replace("X", "1"))
+        print("Max Address", max_address)
+        all_addresses = []
+
+        for address_to_set in range(min_address, max_address + 1):
+            address_bin = cache.get(address_to_set)
+
+            if address_bin is None:
+                address_bin = left_pad(convert_to_bin(address_to_set), 36)
+                cache[address_to_set] = address_bin
+
+            if any(
+                masked_address[i] != "X" and masked_address[i] != aaa
+                for i, aaa in enumerate(address_bin)
+            ):
+                continue
+
+            memory[address_to_set] = value
 
     return sum(memory.values())
 
