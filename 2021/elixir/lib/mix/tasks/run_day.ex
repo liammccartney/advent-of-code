@@ -11,17 +11,13 @@ defmodule Mix.Tasks.RunDay do
 
     day
     |> get_input_data(is_example)
-    |> module.part_1
-    |> print_solution(day, "Part 1")
-
-    day
-    |> get_input_data(is_example)
-    |> module.part_2()
-    |> print_solution(day, "Part 2")
+    |> module.main
+    |> print_solution(day)
   end
 
-  defp print_solution(output, day, prefix) do
-    IO.puts("#{day} #{prefix}: #{output}")
+  defp print_solution({part_1, part_2}, day) do
+    IO.puts("#{day} Part 1: #{part_1}")
+    IO.puts("#{day} Part 2: #{part_2}")
   end
 
   defp get_input_data(day, is_example) do

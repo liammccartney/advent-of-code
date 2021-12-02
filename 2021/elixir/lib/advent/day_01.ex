@@ -1,7 +1,5 @@
 defmodule Advent.Day01 do
   def part_1(data) do
-    data = Enum.map(data, &String.to_integer/1)
-
     data
     |> Enum.with_index()
     |> Enum.reduce(0, fn {x, i}, acc ->
@@ -11,8 +9,6 @@ defmodule Advent.Day01 do
   end
 
   def part_2(data) do
-    data = Enum.map(data, &String.to_integer/1)
-
     windowed =
       data
       |> Enum.with_index()
@@ -28,5 +24,10 @@ defmodule Advent.Day01 do
       y = Enum.at(windowed, i + 1)
       if !is_nil(y) && y > x, do: acc + 1, else: acc
     end)
+  end
+
+  def main(data) do
+    data = data |> Enum.map(&String.to_integer/1)
+    {part_1(data), part_2(data)}
   end
 end
