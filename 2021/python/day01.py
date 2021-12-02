@@ -25,7 +25,7 @@ def part_2(depths):
 
 
 if __name__ == "__main__":
-    with open("input.txt", "r") as depths:
+    with open("../input/day01.txt", "r") as depths:
         depths = [int(d) for d in depths.readlines()]
         print("Part 1:", part_1(depths))
         print("Part 2:", part_2(depths))
