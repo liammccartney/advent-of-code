@@ -1,21 +1,16 @@
 def part_1(depths):
     increases = 0
-    for i, d in enumerate(depths):
-        if i == len(depths) - 1:
-            return increases
-
+    for i, d in enumerate(depths[0:-1]):
         next_d = depths[i + 1]
 
         if next_d > d:
             increases += 1
+    return increases
 
 
 def part_2(depths):
     window_sums = []
-    for i, d in enumerate(depths):
-        if i >= len(depths) - 2:
-            continue
-
+    for i, d in enumerate(depths[0:-2]):
         next_d = depths[i + 1]
         next_next_d = depths[i + 2]
 
