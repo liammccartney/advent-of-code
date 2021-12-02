@@ -1,29 +1,24 @@
 defmodule Advent.Day01 do
   def part_1(data) do
-    data
-    |> Enum.with_index()
-    |> Enum.reduce(0, fn {x, i}, acc ->
-      y = Enum.at(data, i + 1)
-      if !is_nil(y) && y > x, do: acc + 1, else: acc
-    end)
+    part_1_helper(data, 0)
+  end
+
+  def part_1_helper(data, total) do
+    case data do
+      [x | tail] ->
+        y = List.first(tail, 0)
+        part_1_helper(tail, if(y > x, do: total + 1, else: total))
+
+      [] ->
+        total
+    end
   end
 
   def part_2(data) do
-    windowed =
-      data
-      |> Enum.with_index()
-      |> Enum.map(fn {x, i} ->
-        y = Enum.at(data, i + 1)
-        z = Enum.at(data, i + 2)
-        x + (y || 0) + (z || 0)
-      end)
-
-    windowed
-    |> Enum.with_index()
-    |> Enum.reduce(0, fn {x, i}, acc ->
-      y = Enum.at(windowed, i + 1)
-      if !is_nil(y) && y > x, do: acc + 1, else: acc
-    end)
+    data
+    |> Enum.chunk_every(3, 1)
+    |> Enum.map(&Enum.sum/1)
+    |> part_1()
   end
 
   def main(data) do
