@@ -22,9 +22,9 @@ defmodule Mix.Tasks.RunDay do
 
   defp get_input_data(day, is_example) do
     if is_example do
-      File.read!("input/#{String.downcase(day) <> "_example"}.txt")
+      File.read!("../input/#{String.downcase(day) <> "_example"}.txt")
     else
-      File.read!("input/#{String.downcase(day)}.txt")
+      File.read!("../input/#{String.downcase(day)}.txt")
     end
   end
 end
