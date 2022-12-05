@@ -5,9 +5,9 @@ defmodule Mix.Tasks.RunDay do
   use Mix.Task
 
   def run(args) do
-    day = List.first(args) |> String.capitalize()
+    day = List.first(args)
     is_example = List.last(args) == "example"
-    module = Module.concat(Advent2022, day)
+    module = Module.concat(Advent2022, "Day" <> day)
 
     day
     |> get_input_data(is_example)
@@ -22,9 +22,9 @@ defmodule Mix.Tasks.RunDay do
 
   defp get_input_data(day, is_example) do
     if is_example do
-      File.read!("../input/#{String.downcase(day) <> "_example"}.txt")
+      File.read!("../input/day#{String.downcase(day) <> "_example"}.txt")
     else
-      File.read!("../input/#{String.downcase(day)}.txt")
+      File.read!("../input/day#{String.downcase(day)}.txt")
     end
   end
 end
