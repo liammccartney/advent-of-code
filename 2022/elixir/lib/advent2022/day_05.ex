@@ -4,6 +4,7 @@ defmodule Advent2022.Day05 do
       {diagram, stack} = part_1_helper({diagram, []}, move, from)
       diagram |> Map.update!(to, fn tower -> tower ++ stack end)
     end)
+    |> Enum.map(fn {_, tower} -> tower |> List.last() end)
   end
 
   def part_1_helper({diagram, stack}, 0, _from) do
@@ -11,8 +12,6 @@ defmodule Advent2022.Day05 do
   end
 
   def part_1_helper({diagram, stack}, move, from) do
-    IO.inspect(diagram, pretty: true)
-
     case diagram |> Map.fetch!(from) |> List.pop_at(-1) do
       {nil, tower} ->
         {diagram |> Map.put(from, tower), stack} |> part_1_helper(move - 1, from)
@@ -22,8 +21,17 @@ defmodule Advent2022.Day05 do
     end
   end
 
-  def part_2(_data) do
-    :todo
+  def part_2({diagram, procedure}) do
+    Enum.reduce(procedure, diagram, fn [from: from, move: move, to: to], diagram ->
+      part_2_helper(diagram, move, from, to)
+    end)
+    |> Enum.map(fn {_, tower} -> tower |> List.last() end)
+  end
+
+  def part_2_helper(diagram, move, from, to) do
+    tower = Map.fetch!(diagram, from)
+    {staying, moving} = Enum.split(tower, -1 * move)
+    diagram |> Map.put(from, staying) |> Map.update!(to, fn dest -> dest ++ moving end)
   end
 
   def parse(data) do
@@ -34,10 +42,26 @@ defmodule Advent2022.Day05 do
   def parse_diagram(diagram) do
     diagram
     |> String.split("\n")
-    |> Enum.map(&String.trim/1)
     |> Enum.drop(-1)
-    |> Enum.map(fn tower ->
-      tower |> String.split(" ") |> Enum.map(fn crate -> crate |> String.slice(1..1) end)
+    |> Enum.map(fn row ->
+      row
+      |> String.graphemes()
+      |> Enum.chunk_every(4)
+      |> Enum.map(fn r ->
+        cell = Enum.filter(r, fn l -> String.match?(l, ~r/[A-Z]/) end)
+
+        case cell do
+          [crate] -> crate
+          _ -> nil
+        end
+      end)
+    end)
+    |> List.zip()
+    |> Enum.map(fn t ->
+      t
+      |> Tuple.to_list()
+      |> Enum.reverse()
+      |> Enum.filter(fn crate -> !is_nil(crate) end)
     end)
     |> Enum.with_index()
     |> Enum.into(%{}, fn {tower, index} -> {index + 1, tower} end)
