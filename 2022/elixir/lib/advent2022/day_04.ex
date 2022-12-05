@@ -31,11 +31,14 @@ defmodule Advent2022.Day04 do
   end
 
   def parse_ranges(ranges) do
-    [elf_a, elf_b] = ranges |> String.split(",")
-    [elf_a_start, elf_a_end] = elf_a |> String.split("-") |> Enum.map(&String.to_integer/1)
-    [elf_b_start, elf_b_end] = elf_b |> String.split("-") |> Enum.map(&String.to_integer/1)
+    ranges
+    |> Enum.map(fn range_pair ->
+      [elf_a, elf_b] = range_pair |> String.split(",")
+      [elf_a_start, elf_a_end] = elf_a |> String.split("-") |> Enum.map(&String.to_integer/1)
+      [elf_b_start, elf_b_end] = elf_b |> String.split("-") |> Enum.map(&String.to_integer/1)
 
-    {MapSet.new(elf_a_start..elf_a_end), MapSet.new(elf_b_start..elf_b_end)}
+      {MapSet.new(elf_a_start..elf_a_end), MapSet.new(elf_b_start..elf_b_end)}
+    end)
   end
 
   def main(data) do
