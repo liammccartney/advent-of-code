@@ -38,7 +38,11 @@ defmodule Advent2023.Day01 do
   end
 
   def this_is_dumb(line) do
-    Regex.replace(~r/one|two|three|four|five|six|seven|eight|nine|\d/, line, fn d ->
+    if line == "xrvhsvkvjb2nineleightwob" do
+      IO.inspect(line)
+    end
+
+    Regex.replace(~r/(?=(one|two|three|four|five|six|seven|eight|nine|\d))/, line, fn _, d ->
       case d do
         "one" -> "1"
         "two" -> "2"
