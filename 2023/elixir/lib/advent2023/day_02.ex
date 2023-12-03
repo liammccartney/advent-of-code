@@ -35,7 +35,38 @@ defmodule Advent2023.Day02 do
     |> Enum.reduce(0, fn {id, _}, sum -> sum + id end)
   end
 
+
+  # Part 2
+  def group_grabs(game) do
+    game
+    |> Enum.reduce(%{}, fn [num, color], acc ->
+      Map.update(acc, color, [num], fn v -> v ++ [num] end)
+    end)
+  end
+
+  def find_minimum_distribution(grabs) do
+    grabs
+    |> Enum.map(fn {color, pulls} -> {color, Enum.max(pulls)} end)
+    |> Map.new()
+  end
+
+  def find_power(cubes) do
+    cubes
+    |> Enum.map(fn {_, n} -> n end)
+    |> Enum.product()
+  end
+
+  def part_2(games) do
+    games
+    |> String.split("\n", trim: true)
+    |> Enum.map(&parse_game(&1))
+    |> Enum.map(fn {_, game} -> group_grabs(game) end)
+    |> Enum.map(&find_minimum_distribution(&1))
+    |> Enum.map(&find_power(&1))
+    |> Enum.sum()
+  end
+
   def main(input) do
-    {part_1(input), "foo"}
+    {part_1(input), part_2(input)}
   end
 end
