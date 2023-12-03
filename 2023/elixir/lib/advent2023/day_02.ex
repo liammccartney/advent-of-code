@@ -14,16 +14,17 @@ defmodule Advent2023.Day02 do
   def parse_grabs(grabs) do
     grabs
     |> String.split(~r/,|;/, trim: true)
-    |> Enum.map(&String.split(&1, " ", trim: true))
-    |> Enum.reduce(%{}, fn [num, color], acc ->
-      num = String.to_integer(num)
-      Map.update(acc, color, num, fn v -> v + num end)
+    |> Enum.map(fn pull ->
+      [num, color] = String.split(pull, " ", trim: true)
+      [String.to_integer(num), color]
     end)
   end
 
   def checK_game(game) do
     game
-    |> Enum.all?(fn {color, num} -> num <= Map.get(@limit, color) end)
+    |> Enum.all?(fn [num, color] ->
+      num <= Map.get(@limit, color)
+    end)
   end
 
   def part_1(games) do

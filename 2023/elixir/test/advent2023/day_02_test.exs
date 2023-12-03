@@ -1,27 +1,67 @@
-defmodule Advent2023.Day01Test do
+defmodule Advent2023.Day02Test do
   use ExUnit.Case
   doctest Advent2023.Day02
 
   test "parses a line" do
     line = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"
-    final = {1, %{"blue" => 9, "red" => 5, "green" => 4}}
+
+    final =
+      {1,
+       [
+         [3, "blue"],
+         [4, "red"],
+         [1, "red"],
+         [2, "green"],
+         [6, "blue"],
+         [2, "green"]
+       ]}
+
     assert Advent2023.Day02.parse_game(line) == final
 
     line = "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red"
-    final = {3, %{"blue" => 6 + 5, "red" => 20 + 4 + 1, "green" => 8 + 13 + 5}}
+
+    final =
+      {3,
+       [
+         [8, "green"],
+         [6, "blue"],
+         [20, "red"],
+         [5, "blue"],
+         [4, "red"],
+         [13, "green"],
+         [5, "green"],
+         [1, "red"]
+       ]}
+
     assert Advent2023.Day02.parse_game(line) == final
   end
 
   test "checks a game" do
     # Possible Game
-    game = %{"blue" => 9, "red" => 5, "green" => 4}
+    game =
+      [
+        [3, "blue"],
+        [4, "red"],
+        [1, "red"],
+        [2, "green"],
+        [6, "blue"],
+        [2, "green"]
+      ]
+
     assert Advent2023.Day02.checK_game(game)
 
-    # Impossible Games
-    game = %{"blue" => 6 + 5, "red" => 20 + 4 + 1, "green" => 8 + 13 + 5}
-    assert !Advent2023.Day02.checK_game(game)
+    game =
+      [
+        [8, "green"],
+        [6, "blue"],
+        [20, "red"],
+        [5, "blue"],
+        [4, "red"],
+        [13, "green"],
+        [5, "green"],
+        [1, "red"]
+      ]
 
-    game = %{"blue" => 6 + 5, "red" => 20 + 4 + 1, "green" => 8 + 13 + 5}
     assert !Advent2023.Day02.checK_game(game)
   end
 
