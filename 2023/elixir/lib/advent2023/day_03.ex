@@ -41,12 +41,39 @@ defmodule Advent2023.Day03 do
     |> MapSet.new()
   end
 
+  def locate_gears(lines_with_index) do
+    lines_with_index
+    |> Enum.flat_map(fn {line, y} ->
+      Regex.scan(~r/\*/, line, return: :index)
+      |> List.flatten()
+      |> Enum.map(fn {i, _} -> {i, y} end)
+    end)
+    |> MapSet.new()
+  end
+
+  def part_2(lines_with_index) do
+    gears = locate_gears(lines_with_index)
+    nums = where_to_search(lines_with_index)
+
+    gears
+    |> Enum.reduce([], fn gear_loc, acc ->
+      neighbor_nums = Enum.filter(nums, fn {_, neighbors} -> Enum.member?(neighbors, gear_loc) end)
+
+      if length(neighbor_nums) == 2 do
+        acc ++ [(Enum.map(neighbor_nums, fn {n, _} -> n end) |> Enum.product())]
+      else
+        acc
+      end
+    end)
+    |> Enum.sum()
+  end
+
   def main(input) do
     lines =
       input
       |> String.split("\n", trim: true)
       |> Enum.with_index()
 
-    {part_1(lines), :todo}
+    {part_1(lines), part_2(lines)}
   end
 end
