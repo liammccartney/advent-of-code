@@ -1,21 +1,52 @@
 defmodule Advent2023.Day03 do
-  def number_spans(line) do
-    Regex.scan(~r/\d+/, line, return: :index) |> List.flatten()
-  end
+  def part_1(lines_with_index) do
+    nums = where_to_search(lines_with_index)
+    symbols = locate_symbols(lines_with_index)
 
-  def symbol_indices(line) do
-    Regex.scan(~r/[^\w.]/, line, return: :index) |> List.flatten() |> Enum.map(fn {i, _} -> i end)
-  end
-
-  def symbol_coordinates(lines) do
-    lines
-    |> Enum.with_index()
-    |> Enum.map(fn {line, y} ->  
-      line
-      |> symbol_indices()
-      |> Enum.map(fn x -> {y, x}  end)
+    nums
+    |> Enum.reduce([], fn {n, neighbors}, acc ->
+      if Enum.any?(neighbors, fn h ->
+           MapSet.member?(symbols, h)
+         end) do
+        acc ++ [n]
+      else
+        acc
+      end
     end)
-    |> List.flatten()
+    |> Enum.sum()
   end
 
+  def where_to_search(lines_with_index) do
+    lines_with_index
+    |> Enum.flat_map(fn {line, y} ->
+      Regex.scan(~r/\d+/, line, return: :index)
+      |> List.flatten()
+      |> Enum.map(fn {x, l} ->
+        {String.slice(line, x, l) |> String.to_integer(), generate_neighbors(x, y, l)}
+      end)
+    end)
+  end
+
+  def generate_neighbors(x, y, l) do
+    for i <- (x - 1)..(x + l), j <- (y - 1)..(y + 1), do: {i, j}
+  end
+
+  def locate_symbols(lines_with_index) do
+    lines_with_index
+    |> Enum.flat_map(fn {line, y} ->
+      Regex.scan(~r/[^\w.]/, line, return: :index)
+      |> List.flatten()
+      |> Enum.map(fn {i, _} -> {i, y} end)
+    end)
+    |> MapSet.new()
+  end
+
+  def main(input) do
+    lines =
+      input
+      |> String.split("\n", trim: true)
+      |> Enum.with_index()
+
+    {part_1(lines), :todo}
+  end
 end
