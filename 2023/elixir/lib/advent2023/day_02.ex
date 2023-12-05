@@ -35,7 +35,6 @@ defmodule Advent2023.Day02 do
     |> Enum.reduce(0, fn {id, _}, sum -> sum + id end)
   end
 
-
   # Part 2
   def group_grabs(game) do
     game

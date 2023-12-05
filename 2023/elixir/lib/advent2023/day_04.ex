@@ -23,7 +23,6 @@ defmodule Advent2023.Day04 do
         |> String.split("|", trim: true)
         |> Enum.map(
           &(String.split(&1)
-            |> Enum.map(fn n -> String.to_integer(n) end)
             |> MapSet.new())
         )
 
@@ -38,7 +37,8 @@ defmodule Advent2023.Day04 do
     |> win_more_cards(0)
   end
 
-  def win_more_cards([], acc), do: acc 
+  def win_more_cards([], acc), do: acc
+
   def win_more_cards([{_, 0} | tail], acc) do
     win_more_cards(tail, acc)
   end
@@ -46,11 +46,12 @@ defmodule Advent2023.Day04 do
   def win_more_cards([{n, c} | tail], acc) do
     {to_map, rest} = Enum.split(tail, n)
 
-    mapped = to_map
+    mapped =
+      to_map
       |> Enum.map(fn {p, d} -> {p, d + 1} end)
+
     win_more_cards([{n, c - 1}] ++ mapped ++ rest, acc + 1)
   end
-
 
   def main(input) do
     lines =

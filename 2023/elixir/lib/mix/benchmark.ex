@@ -20,7 +20,7 @@ defmodule Mix.Tasks.Benchmark do
     input = get_input_data(day, is_example)
 
     Benchee.run(%{
-      "main" => fn -> module.main(input) end,
+      "main" => fn -> module.main(input) end
     })
   end
 end

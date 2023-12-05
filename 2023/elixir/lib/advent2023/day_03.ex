@@ -57,10 +57,11 @@ defmodule Advent2023.Day03 do
 
     gears
     |> Enum.reduce([], fn gear_loc, acc ->
-      neighbor_nums = Enum.filter(nums, fn {_, neighbors} -> Enum.member?(neighbors, gear_loc) end)
+      neighbor_nums =
+        Enum.filter(nums, fn {_, neighbors} -> Enum.member?(neighbors, gear_loc) end)
 
       if length(neighbor_nums) == 2 do
-        acc ++ [(Enum.map(neighbor_nums, fn {n, _} -> n end) |> Enum.product())]
+        acc ++ [Enum.map(neighbor_nums, fn {n, _} -> n end) |> Enum.product()]
       else
         acc
       end
