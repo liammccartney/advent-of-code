@@ -4,7 +4,7 @@ defmodule Advent2024.Day01 do
   end
 
   def part_2(input) do
-  input
+    input
   end
 
   def main(data) do
