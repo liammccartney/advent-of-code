@@ -1,0 +1,293 @@
+
+17:01:39.811 [info] Loading 154 CA(s) from :otp store
+
+17:01:39.939 id=1 [debug] handled request client -> server initialize in 77ms
+
+17:01:39.942 [debug] sent notification server -> client window/logMessage
+
+17:01:39.949 [debug] sent notification server -> client window/logMessage
+
+17:01:39.949 id=135 [debug] sent request server -> client client/registerCapability
+
+17:01:39.949 [info] [extension] Credo initializing with options %NextLS.InitOpts.Extensions.Credo{enable: true, cli_options: []}
+
+17:01:39.964 [debug] sent notification server -> client window/logMessage
+
+17:01:39.967 id=199 [debug] sent request server -> client window/workDoneProgress/create
+
+17:01:39.972 [debug] sent notification server -> client $/progress
+
+17:01:40.045 [debug] sent notification server -> client window/logMessage
+
+17:01:40.045 [info] Beginning DB migration...
+
+17:01:40.052 [debug] sent notification server -> client window/logMessage
+
+17:01:40.052 [info] Database is being upgraded from version 0 to 6.
+
+This will trigger a full recompilation in order to re-index your codebase.
+
+
+17:01:40.053 [debug] sent notification server -> client window/logMessage
+
+17:01:40.053 [info] Finished DB migration...
+
+17:01:40.053 [debug] sent notification server -> client window/logMessage
+
+17:01:40.053 [info] Booting runtime for elixir.
+
+- elixir: /opt/homebrew/bin/elixir
+- zombie wrapper script: /Users/liam/Library/Application Support/.burrito/next_ls_erts-14.2.1_0.20.2/lib/next_ls-0.20.2/priv/cmd
+- working_dir: /Users/liam/Code/advent-of-code/2024/elixir
+- command: /opt/homebrew/bin/elixir --no-halt --sname nextls-runtime-1733176900053620791 --cookie NWQIY2Q6HI4GUCI6E623JLGQVEC4H6JLD4ZORVW7TK53PIODNXWQ==== -S mix loadpaths --no-compile
+
+Environment: 
+
+LSP=nextls
+NEXTLS_PARENT_PID=g1h3H25leHQtbHMtMTczMzE3Njg5OTgzNjYwMjc5MUBNYWMAAAEJAAAAAGdOLkQ=
+MIX_ENV=dev
+MIX_TARGET=host
+MIX_BUILD_ROOT=.elixir-tools/_build
+ROOTDIR=false
+BINDIR=false
+RELEASE_ROOT=false
+RELEASE_SYS_CONFIG=false
+PATH=/Users/liam/Library/Application Support/.burrito/next_ls_erts-14.2.1_0.20.2/bin:/Users/liam/.local/share/nvim/mason/bin:/Users/liam/.local/bin:/opt/homebrew/opt/postgresql@16/bin:/opt/homebrew/opt/openjdk/bin:/Users/liam/Library/Python/3.11/bin/:/opt/homebrew/opt/postgresql@15/bin:/Users/liam/.nvm/versions/node/v20.16.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/usr/local/go/bin:/Users/liam/.local/bin:/opt/homebrew/opt/postgresql@16/bin:/opt/homebrew/opt/openjdk/bin:/Users/liam/Library/Python/3.11/bin/:/opt/homebrew/opt/postgresql@15/bin:/Users/liam/.nvm/versions/node/v20.16.0/bin:/Users/liam/.cargo/bin:/Applications/iTerm.app/Contents/Resources/utilities:/Users/liam/.dotnet/tools:/opt/homebrew/opt/fzf/bin:/Users/liam/.dotnet/tools
+
+
+17:01:40.054 [debug] handled notification client -> server initialized in 113ms
+
+17:01:40.057 [debug] handled notification client -> server textDocument/didOpen in 3ms
+
+17:01:40.885 [debug] sent notification server -> client window/showMessage
+
+17:01:40.887 [debug] sent notification server -> client window/logMessage
+
+17:01:40.887 [info] Downloaded 0.23.2 of Next LS
+
+17:01:41.083 [debug] sent notification server -> client window/logMessage
+
+17:01:41.083 [info] Connected to node nextls-runtime-1733176900053620791@Mac
+
+17:01:41.138 [debug] handled notification client -> server textDocument/didClose in 2ms
+
+17:01:41.231 [debug] sent notification server -> client window/logMessage
+
+17:01:41.231 [info]      warning: got "@impl true" for function run/1 but no behaviour was declared
+     │
+ 262 │   def run(args) do
+     │   ~~~~~~~~~~~~~~~~
+     │
+     └─ /Users/liam/Library/Application Support/.burrito/next_ls_erts-14.2.1_0.20.2/lib/next_ls-0.20.2/priv/monkey/_next_ls_private_compiler.ex:262: :_next_ls_private_formatter (module)
+
+
+
+17:01:41.231 [debug] sent notification server -> client $/progress
+
+17:01:41.232 [debug] sent notification server -> client window/logMessage
+
+17:01:41.234 id=327 [debug] sent request server -> client window/workDoneProgress/create
+
+17:01:41.263 [debug] sent notification server -> client window/logMessage
+
+17:01:41.263 [info] ==> deep_merge
+
+
+17:01:41.263 [debug] sent notification server -> client window/logMessage
+
+17:01:41.263 [info] Compiling 2 files (.ex)
+
+
+17:01:41.332 [debug] sent notification server -> client window/logMessage
+
+17:01:41.332 [info] Generated deep_merge app
+
+
+17:01:41.355 [debug] sent notification server -> client window/logMessage
+
+17:01:41.355 [info] ==> statistex
+
+
+17:01:41.355 [debug] sent notification server -> client window/logMessage
+
+17:01:41.355 [info] Compiling 3 files (.ex)
+
+
+17:01:41.389 [debug] sent notification server -> client window/logMessage
+
+17:01:41.389 [info] Generated statistex app
+
+
+17:01:41.400 [debug] sent notification server -> client window/logMessage
+
+17:01:41.400 [info] ==> benchee
+Compiling 44 files (.ex)
+
+
+17:01:41.440 id=259 [debug] sent request server -> client window/workDoneProgress/create
+
+17:01:41.535 [debug] sent notification server -> client window/logMessage
+
+17:01:41.535 [info]      warning: :code.lib_dir/2 is deprecated. This functionality will be removed in a future release
+     │
+ 190 │   def all_protocols_consolidated?(lib_dir_fun \\ &:code.lib_dir/2) do
+     │                                                         ~
+     │
+     └─ lib/benchee/system.ex:190:57: Benchee.System.all_protocols_consolidated?/0
+
+
+
+17:01:41.566 [debug] sent notification server -> client window/logMessage
+
+17:01:41.566 [info] Generated benchee app
+
+
+17:01:41.597 [debug] sent notification server -> client window/logMessage
+
+17:01:41.597 [info] ==> advent2023
+
+
+17:01:41.597 [debug] sent notification server -> client window/logMessage
+
+17:01:41.597 [info] Compiling 4 files (.ex)
+
+
+17:01:41.641 [debug] sent notification server -> client window/logMessage
+
+17:01:41.641 [info] Generated advent2023 app
+
+
+17:01:41.645 [debug] sent notification server -> client window/logMessage
+
+17:01:41.645 [info] Compiled elixir!
+
+17:01:41.645 [debug] sent notification server -> client $/progress
+
+17:01:41.769 [debug] sent notification server -> client $/progress
+
+17:01:42.114 [debug] sent notification server -> client $/progress
+
+17:01:42.115 [debug] sent notification server -> client $/progress
+
+17:01:59.387 [debug] handled notification client -> server textDocument/didOpen in 110µs
+
+17:02:04.234 [debug] handled notification client -> server textDocument/didChange in 8ms
+
+17:02:04.534 [debug] handled notification client -> server textDocument/didChange in 117µs
+
+17:02:08.104 id=455 [debug] sent request server -> client window/workDoneProgress/create
+
+17:02:08.104 [debug] handled notification client -> server textDocument/didSave in 2ms
+
+17:02:08.104 [debug] sent notification server -> client $/progress
+
+17:02:08.116 [debug] sent notification server -> client window/logMessage
+
+17:02:08.116 [info] Generated advent2023 app
+
+
+17:02:08.117 [debug] sent notification server -> client $/progress
+
+17:02:08.117 [debug] sent notification server -> client window/logMessage
+
+17:02:08.117 [info] Compiled elixir!
+
+17:02:08.200 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 5ms
+
+17:02:14.466 [debug] handled notification client -> server textDocument/didClose in 57µs
+
+17:02:14.835 [debug] handled notification client -> server textDocument/didOpen in 82µs
+
+17:02:23.020 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 918µs
+
+17:02:33.629 [debug] handled notification client -> server textDocument/didOpen in 67µs
+
+17:02:34.329 [debug] handled notification client -> server textDocument/didChange in 102µs
+
+17:02:36.225 [debug] handled notification client -> server textDocument/didOpen in 66µs
+
+17:02:37.988 [debug] handled notification client -> server textDocument/didClose in 51µs
+
+17:02:39.015 [debug] handled notification client -> server textDocument/didClose in 50µs
+
+17:02:41.909 [debug] handled notification client -> server textDocument/didClose in 50µs
+
+17:02:49.242 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 177µs
+
+17:02:55.891 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 1ms
+
+17:03:22.020 [debug] handled notification client -> server textDocument/didOpen in 183µs
+
+17:03:24.186 [debug] handled notification client -> server textDocument/didChange in 154µs
+
+17:03:25.020 [debug] handled notification client -> server textDocument/didChange in 133µs
+
+17:03:26.263 [debug] handled notification client -> server textDocument/didChange in 235µs
+
+17:03:26.856 [debug] handled notification client -> server textDocument/didChange in 154µs
+
+17:03:27.895 id=194 [debug] sent request server -> client window/workDoneProgress/create
+
+17:03:27.895 [debug] handled notification client -> server textDocument/didSave in 592µs
+
+17:03:27.904 [debug] sent notification server -> client $/progress
+
+17:03:27.904 [debug] sent notification server -> client window/logMessage
+
+17:03:27.905 [info] Compiling 1 file (.ex)
+
+
+17:03:27.906 id=258 [debug] sent request server -> client window/workDoneProgress/create
+
+17:03:27.907 [debug] sent notification server -> client $/progress
+
+17:03:27.915 [debug] sent notification server -> client $/progress
+
+17:03:27.915 [debug] sent notification server -> client window/logMessage
+
+17:03:27.915 [info] Compiled elixir!
+
+17:03:27.996 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 163µs
+
+17:03:28.010 [debug] sent notification server -> client $/progress
+
+17:03:29.029 [debug] handled notification client -> server textDocument/didClose in 51µs
+
+17:03:29.385 [debug] handled notification client -> server textDocument/didOpen in 101µs
+
+17:03:31.112 [debug] handled notification client -> server textDocument/didChange in 136µs
+
+17:03:31.747 [debug] handled notification client -> server textDocument/didChange in 167µs
+
+17:03:32.577 id=322 [debug] sent request server -> client window/workDoneProgress/create
+
+17:03:32.577 [debug] handled notification client -> server textDocument/didSave in 627µs
+
+17:03:32.583 [debug] sent notification server -> client $/progress
+
+17:03:32.583 [debug] sent notification server -> client window/logMessage
+
+17:03:32.583 [info] Compiling 1 file (.ex)
+
+
+17:03:32.585 id=323 [debug] sent request server -> client window/workDoneProgress/create
+
+17:03:32.586 [debug] sent notification server -> client $/progress
+
+17:03:32.594 [debug] sent notification server -> client $/progress
+
+17:03:32.594 [debug] sent notification server -> client window/logMessage
+
+17:03:32.594 [info] Compiled elixir!
+
+17:03:32.677 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 171µs
+
+17:03:32.697 [debug] sent notification server -> client $/progress
+
+17:03:33.458 [debug] handled notification client -> server textDocument/didClose in 65µs
+
+17:03:34.636 id=2 [debug] handled request client -> server shutdown in 1ms
+
+17:03:34.649 [debug] sent notification server -> client window/logMessage
+
+17:03:34.649 [info] The runtime for elixir has successfully shut down.
